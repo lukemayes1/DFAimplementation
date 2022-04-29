@@ -6,6 +6,8 @@
 # rejected by a DFA. The DFA is defined in a .txt file that is       #
 # provided by the user.                                              #
 # ------------------------------------------------------------------ #
+from colorama import init
+from termcolor import colored
 
 
 def readFileData():
@@ -14,7 +16,7 @@ def readFileData():
     i = 0
 
     # Prompt user for file name and open file
-    fileInput = input("Input file: ")
+    fileInput = input(colored("Input file: ", "blue"))
 
     # Open file and calculate line count
     file = open(fileInput, "r")
@@ -45,22 +47,22 @@ acceptState = int(contents.pop(-1))
 numCharsRead = 0
 
 # Prompt user for input
-inputStr = input("Input a string: ")
+inputStr = input(colored("Input a string: ", "blue"))
 
 # Loop through input string
 while numCharsRead != len(inputStr):
     currState = 0
 
     # Display information about DFA from file
-    print("\nDFA Information")
-    print("------------------------")
+    print(colored("\nDFA Information", "blue"))
+    print(colored("------------------------", "blue"))
     print("The alphabet is " + alphabet)
     print("There are " + numStates + " states")
     print("The accept state is q" + str(acceptState))
 
     # Process input string
-    print("\nDFA Steps Taken")
-    print("--------------------------------------------")
+    print(colored("\nDFA Steps Taken", "blue"))
+    print(colored("--------------------------------------------", "blue"))
     for i in range(len(inputStr)):
         print("Current state = " + str(currState) + " Current input char = " + inputStr[i])
         currState = nextState(currState, inputStr[i], contents, alphabet)
@@ -68,13 +70,13 @@ while numCharsRead != len(inputStr):
 
     # Determine if string is accepted or rejected
     if currState == acceptState:
-        print("Current state = " + str(currState) + " String " + inputStr + " is accepted")
+        print("Current state = " + str(currState) + " String " + inputStr + " is" + colored(" accepted", "green"))
     else:
-        print("Current state = " + str(currState) + " String " + inputStr + " is rejected")
+        print("Current state = " + str(currState) + " String " + inputStr + " is" + colored(" rejected", "red"))
 
     # Reset and ask user for another input 
     numCharsRead = 0
-    inputStr = input("\n-----------------------------------------"\
+    inputStr = input( "\n" + colored("-----------------------------------------"\
                       "----------------------------------------"\
-                      "-----------------\n\nInput another string: ")
+                      "-----------------", "white", "on_white") + "\n\n" + colored("Input another string: ", "blue"))
     
