@@ -1,0 +1,21 @@
+Prompt for input string s
+
+While (s != ‘Done’) 
+{ 
+    CurrState = 0; 
+    for i=0 to (length(s)-1) 
+    { 
+        println(“Current state = “+ i+”Current input char = “+s[i])
+        CurrState = NextState(CurrState, s[i]) 
+    }
+    
+    If accept(CurrState) 
+    {
+        println(“String “+s+” is accepted”)
+    }
+    Else 
+    {
+        println(“String “+s+” is rejected”)
+    }
+    Prompt for input string s
+}
